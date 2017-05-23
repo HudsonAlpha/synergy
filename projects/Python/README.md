@@ -1,7 +1,9 @@
-# HudsonAlpha HPE Synergy 
+# HudsonAlpha HPE Synergy Provisioning via Image Streamer and Python  
   
-The HudsonAlpha artifact bundles and scripts are used to provision 3 use cases: 
-Docker CentOS 7.3, OpenStack Newton all-in-one, and OpenStack Newton compute node  
+The HudsonAlpha artifact bundles and scripts are used to provision 3 use cases:  
+Docker CentOS 7.3  
+OpenStack Newton all-in-one  
+OpenStack Newton compute node  
   
 ## Pre-requisites
   
