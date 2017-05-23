@@ -68,8 +68,8 @@ $ packstack --answer-file=<answerfile>
 * python-hpOneView  
   
 ## Contact  
-cloud-composers@hudsonalpha.org  
-@katmullican
+Email: cloud-composers@hudsonalpha.org  
+Twitter: @katmullican
   
 ## Join us on Slack!  
 http://www.hudsonalpha.org/cloud-composers  
