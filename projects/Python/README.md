@@ -1,4 +1,4 @@
-# HudsonAlpha HPE Synergy Provisioning via Image Streamer and Python  
+# Synergy Provisioning via Image Streamer and Python  
   
 The HudsonAlpha artifact bundles and scripts are used to provision 3 use cases:  
 Docker CentOS 7.3  
