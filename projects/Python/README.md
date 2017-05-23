@@ -59,14 +59,14 @@ SSH to OpenStack controller node
 $ sed -i '/^CONFIG_COMPUTE_HOSTS=/ s/$/,<IP of compute node>/' <answerfile>
 $ packstack --answer-file=<answerfile>
 ```
-
+  
 ## Built With
-
-* CentOS 7.3.1611
-* python-hpOneView
-
+* CentOS 7.3.1611  
+* Python 3.4.5  
+* python-hpOneView  
+  
 ## Contact  
-cloud-composers@hudsonalpha.org
+cloud-composers@hudsonalpha.org  
 @katmullican
   
 ## Join us on Slack!  

@@ -122,12 +122,16 @@ profile_def = {
                 "value": ""
             },
             {
-                "name": "FQDN",
+                "name": "SERVER_FQDN",
                 "value": config.SERVER_FQDN
             },
             {
                 "name": "NIC2",
                 "value": ""
+            },
+            {
+                "name": "CONSUL_FQDN",
+                "value": config.CONSUL_FQDN
             },
             {
                 "name": "DATADOG_TAG",

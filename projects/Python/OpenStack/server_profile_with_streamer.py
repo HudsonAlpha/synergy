@@ -41,6 +41,7 @@ print('Bay number: %s' % config.BAY_NUM)
 print('Deployment plan: %s' % config.DEPL_PLAN)
 print('Profile name: %s' % config.PROFILE_NAME)
 print('Server FQDN: %s' % config.SERVER_FQDN)
+print('Consul FQDN: %s' % config.CONSUL_FQDN)
 print('DataDog tag: %s' % config.DATADOG_TAG)
 print('NETWORK NAME: %s' % config.NET_NAME)
 print('VLAN ID: %s' % config.VLAN_ID)
@@ -116,7 +117,8 @@ if config.DEPL_PLAN == 'Docker CentOS 7.3':
             dict(name='NIC2.connectionid', value='3'),
             dict(name='NIC2.constraint', value='userspecified'),
             dict(name='NIC2.mac', value=NIC2_MAC),
-            dict(name='FQDN', value=config.SERVER_FQDN),
+            dict(name='SERVER_FQDN', value=config.SERVER_FQDN),
+            dict(name='CONSUL_FQDN', value=config.CONSUL_FQDN),
             dict(name='DATADOG_TAG', value=config.DATADOG_TAG),
             dict(name='VLAN_ID', value=config.VLAN_ID),
         ]
@@ -133,7 +135,8 @@ if config.DEPL_PLAN == 'OpenStack all-in-one':
             dict(name='NIC2.connectionid', value='3'),
             dict(name='NIC2.constraint', value='userspecified'),
             dict(name='NIC2.mac', value=NIC2_MAC),
-            dict(name='FQDN', value=config.SERVER_FQDN),
+            dict(name='SERVER_FQDN', value=config.SERVER_FQDN),
+            dict(name='CONSUL_FQDN', value=config.CONSUL_FQDN),
             dict(name='DATADOG_TAG', value=config.DATADOG_TAG),
             dict(name='VLAN_ID', value=config.VLAN_ID),
             dict(name='IP_ALLOC_POOL_START', value=config.IP_ALLOC_POOL_START),
@@ -158,7 +161,8 @@ if config.DEPL_PLAN == 'OpenStack Compute':
             dict(name='NIC2.connectionid', value='3'),
             dict(name='NIC2.constraint', value='userspecified'),
             dict(name='NIC2.mac', value=NIC2_MAC),
-            dict(name='FQDN', value=config.SERVER_FQDN),
+            dict(name='SERVER_FQDN', value=config.SERVER_FQDN),
+            dict(name='CONSUL_FQDN', value=config.CONSUL_FQDN),
             dict(name='DATADOG_TAG', value=config.DATADOG_TAG),
             dict(name='VLAN_ID', value=config.VLAN_ID),
             dict(name='SERVER_IP', value=config.SERVER_IP),
