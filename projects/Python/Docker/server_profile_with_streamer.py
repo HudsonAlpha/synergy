@@ -43,7 +43,7 @@ print('Profile name: %s' % config.PROFILE_NAME)
 print('Server FQDN: %s' % config.SERVER_FQDN)
 print('Consul FQDN: %s' % config.CONSUL_FQDN)
 print('DataDog tag: %s' % config.DATADOG_TAG)
-print('NETWORK NAME: %s' % config.NET_NAME)
+print('Network set: %s' % config.NET_SET_NAME)
 print('VLAN ID: %s' % config.VLAN_ID)
 if (config.DEPL_PLAN == 'OpenStack all-in-one' or
         config.DEPL_PLAN == 'OpenStack Compute'):
@@ -65,12 +65,8 @@ ENCL_GROUP_URI = oneview_client.enclosures.get_by('name', config.ENCL_NAME)[0]['
 SRVR_HWARE_URI = oneview_client.enclosures.get_by('name', config.ENCL_NAME)[0]['deviceBays'][int(config.BAY_NUM)-1]['deviceUri']
 SRVR_HWARE_TYPE_URI = oneview_client.server_hardware.get(SRVR_HWARE_URI)['serverHardwareTypeUri']
 DEPL_PLAN_URI = oneview_client.os_deployment_plans.get_by_name(config.DEPL_PLAN)['uri']
-NET_URI = oneview_client.network_sets.get_by('name', config.NET_NAME)[0]['uri']
-
-#
-# Deploy net uri is static
-#
-DEPL_NET_URI = "/rest/ethernet-networks/c18201f7-e906-4e96-8484-ac81b1470cc2"
+NET_URI = oneview_client.network_sets.get_by('name', config.NET_SET_NAME)[0]['uri']
+DEPL_NET_URI = oneview_client.ethernet_networks.get_by('name', config.DEPL_NET_NAME)[0]['uri']
 
 #
 # Create a server profile
