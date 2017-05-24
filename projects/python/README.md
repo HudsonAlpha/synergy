@@ -22,8 +22,8 @@ Install python-hpOneView per https://github.com/HewlettPackard/python-hpOneView
 Generate SSH keypair that will be used to communicate with Synergy nodes once they are provisioned  
 Create /hpov/haconfig.json with Synergy OneView credentials
 Clone this repo  
-Modify <project>/profile_*.py files for your environment  
-Modify <project>/config_*.py files for your environment  
+Modify <project>/profile_.py files for your environment  
+Modify <project>/config_.py files for your environment  
   
 ## Install and configure Hashicorp Consul single server  
   
@@ -42,19 +42,22 @@ consul kv put synergy/datadog '<DataDog API key>'
 
 Provision Docker CentOS 7.3 node  
 ```
-cd Docker
+cd projects/python/common
+export PYTHONPATH=../docker
 ./server_profile_with_streamer.py config_docker.py
 ```
 
 Provision OpenStack all-in-one node
 ```
-cd OpenStack
+cd projects/python/common
+export PYTHONPATH=../openstack
 ./server_profile_with_streamer.py config_openstack_allinone.py
 ```
 
 Provision OpenStack compute node
 ```
-cd OpenStack
+cd projects/python/common
+export PYTHONPATH=../openstack
 ./server_profile_with_streamer.py config_openstack_compute.py
 SSH to OpenStack controller node
 # su - packstack
@@ -71,7 +74,7 @@ $ packstack --answer-file=<answerfile>
 Email: cloud-composers@hudsonalpha.org  
 Twitter: @katmullican
   
-## Join us on Slack!  
+## Join the cloud-composers Slack community!  
 http://www.hudsonalpha.org/cloud-composers  
   
 

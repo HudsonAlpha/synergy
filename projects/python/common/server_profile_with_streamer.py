@@ -14,7 +14,7 @@ from hpOneView.oneview_client import OneViewClient
 from hpOneView.exceptions import HPOneViewException
 
 #
-# Load config from a file
+# Load OneView credentials from a file
 #
 oneview_client = OneViewClient.from_json_file('/hpov/haconfig.json')
 
