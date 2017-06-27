@@ -7,7 +7,7 @@ OpenStack Newton compute node
   
 ## Pre-requisites
   
-HPE Synergy with ImageStreamer module and at least one available node  
+Single HPE Synergy frame with ImageStreamer module and at least one available node  
 Image Streamer Deployment Plan and Golden Image (see docs)  
 Orchestration server with Python >= 3.4 and Python library for HPE OneView installed (https://github.com/HewlettPackard/python-hpOneView)  
 Hashicorp Consul cluster with at least 1 server     
