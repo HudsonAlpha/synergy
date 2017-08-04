@@ -118,16 +118,8 @@ profile_def = {
     "osDeploymentSettings": {
         "osCustomAttributes": [
             {
-                "name": "NIC1",
-                "value": ""
-            },
-            {
                 "name": "SERVER_FQDN",
                 "value": config.SERVER_FQDN
-            },
-            {
-                "name": "NIC2",
-                "value": ""
             },
             {
                 "name": "CONSUL_FQDN",

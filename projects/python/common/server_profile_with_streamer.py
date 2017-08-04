@@ -84,104 +84,6 @@ if args.verbosity >= 2:
     pprint(new_profile)
 
 #
-# Re-apply the newly created profile, so NIC1 and NIC2 variables will be set
-#
-if args.verbosity >= 1:
-    print('\nReapply NIC variables in newly created profile')
-
-try:
-    profile_to_update = oneview_client.server_profiles.get(new_profile['uri'])
-except HPOneViewException as e:
-    print(e.msg)
-
-try:
-    NIC1_MAC = profile_to_update['connections'][1]['mac']
-except HPOneViewException as e:
-    print(e.msg)
-
-try:
-    NIC2_MAC = profile_to_update['connections'][2]['mac']
-except HPOneViewException as e:
-    print(e.msg)
-
-if config.DEPL_PLAN == 'Docker CentOS 7.3':
-    try:
-        profile_to_update['osDeploymentSettings']['osCustomAttributes'] = [
-            dict(name='NIC1.connectionid', value='2'),
-            dict(name='NIC1.constraint', value='userspecified'),
-            dict(name='NIC1.mac', value=NIC1_MAC),
-            dict(name='NIC2.connectionid', value='3'),
-            dict(name='NIC2.constraint', value='userspecified'),
-            dict(name='NIC2.mac', value=NIC2_MAC),
-            dict(name='SERVER_FQDN', value=config.SERVER_FQDN),
-            dict(name='CONSUL_FQDN', value=config.CONSUL_FQDN),
-            dict(name='DATADOG_TAG', value=config.DATADOG_TAG),
-            dict(name='VLAN_ID', value=config.VLAN_ID),
-        ]
-        #print('Profile has been created and applied.  Please wait while MAC settings are applied.')
-    except HPOneViewException as e:
-        print(e.msg)
-
-if config.DEPL_PLAN == 'OpenStack all-in-one':
-    try:
-        profile_to_update['osDeploymentSettings']['osCustomAttributes'] = [
-            dict(name='NIC1.connectionid', value='2'),
-            dict(name='NIC1.constraint', value='userspecified'),
-            dict(name='NIC1.mac', value=NIC1_MAC),
-            dict(name='NIC2.connectionid', value='3'),
-            dict(name='NIC2.constraint', value='userspecified'),
-            dict(name='NIC2.mac', value=NIC2_MAC),
-            dict(name='SERVER_FQDN', value=config.SERVER_FQDN),
-            dict(name='CONSUL_FQDN', value=config.CONSUL_FQDN),
-            dict(name='DATADOG_TAG', value=config.DATADOG_TAG),
-            dict(name='VLAN_ID', value=config.VLAN_ID),
-            dict(name='IP_ALLOC_POOL_START', value=config.IP_ALLOC_POOL_START),
-            dict(name='IP_ALLOC_POOL_END', value=config.IP_ALLOC_POOL_END),
-            dict(name='NEUTRON_EXT_CIDR', value=config.NEUTRON_EXT_CIDR),
-            dict(name='NEUTRON_EXT_GW', value=config.NEUTRON_EXT_GW),
-            dict(name='SERVER_IP', value=config.SERVER_IP),
-            dict(name='SERVER_MASK', value=config.SERVER_MASK),
-            dict(name='SERVER_GW', value=config.SERVER_GW),
-            dict(name='DNS_IP', value=config.DNS_IP)
-        ]
-        #print('Profile has been created and applied.  Please wait while MAC settings are applied.')
-    except HPOneViewException as e:
-        print(e.msg)
-
-if config.DEPL_PLAN == 'OpenStack Compute':
-    try:
-        profile_to_update['osDeploymentSettings']['osCustomAttributes'] = [
-            dict(name='NIC1.connectionid', value='2'),
-            dict(name='NIC1.constraint', value='userspecified'),
-            dict(name='NIC1.mac', value=NIC1_MAC),
-            dict(name='NIC2.connectionid', value='3'),
-            dict(name='NIC2.constraint', value='userspecified'),
-            dict(name='NIC2.mac', value=NIC2_MAC),
-            dict(name='SERVER_FQDN', value=config.SERVER_FQDN),
-            dict(name='CONSUL_FQDN', value=config.CONSUL_FQDN),
-            dict(name='DATADOG_TAG', value=config.DATADOG_TAG),
-            dict(name='VLAN_ID', value=config.VLAN_ID),
-            dict(name='SERVER_IP', value=config.SERVER_IP),
-            dict(name='SERVER_MASK', value=config.SERVER_MASK),
-            dict(name='SERVER_GW', value=config.SERVER_GW),
-            dict(name='DNS_IP', value=config.DNS_IP)
-        ]
-#        #print('Profile has been created and applied.  Please wait while MAC settings are applied.')
-    except HPOneViewException as e:
-        print(e.msg)
-
-
-try:
-    profile_updated = oneview_client.server_profiles.update(resource=profile_to_update, id_or_uri=profile_to_update['uri'])
-    profile_updated_uri = profile_updated['uri']
-#    print('Profile has been updated with MAC settings.')
-    print('Profile %s has been created and applied.' % profile_updated_uri)
-    if args.verbosity >= 2:
-        pprint(profile_updated)
-except HPOneViewException as e:
-    print(e.msg)
-
-#
 # Power on the blade
 #
 try:
@@ -189,7 +91,7 @@ try:
         'powerState': 'On',
         'powerControl': 'MomentaryPress'
     }
-    server_power = oneview_client.server_hardware.update_power_state(configuration, profile_updated['serverHardwareUri'])
+    server_power = oneview_client.server_hardware.update_power_state(configuration, new_profile['serverHardwareUri'])
     print("Successfully changed the power state to '{powerState}'".format(**server_power))
 except HPOneViewException as e:
     print(e.msg)

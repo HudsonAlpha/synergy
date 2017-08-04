@@ -1,6 +1,6 @@
 # Synergy Provisioning via Image Streamer and Python  
   
-The HudsonAlpha artifact bundles and scripts are used to provision 3 use cases:  
+The HudsonAlpha artifact bundle and scripts are used to provision 3 use cases:  
 Docker CentOS 7.3  
 OpenStack Newton all-in-one  
 OpenStack Newton compute node  
@@ -80,4 +80,4 @@ http://www.hudsonalpha.org/cloud-composers
 
 ## Authors
 
-* **Katreena Mullican** - *Initial work* - [HudsonAlpha Instite for Biotechnology](http//hudsonalpha.org)
+* **Katreena Mullican** - *Initial work* - [HudsonAlpha Instite for Biotechnology](http://www.hudsonalpha.org)
