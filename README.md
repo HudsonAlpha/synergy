@@ -1,6 +1,6 @@
-# HPE Synergy Community Project
+# Branch 3.10.04-0299553
 
-This repo is managed by HudsonAlpha Institute for Biotechnology.  The purpose is to share artifact bundles and scripts used to provision Synergy resources for OpenStack and Docker projects.  
+OneView code 3.10.04-0299553 is required for template functionality with Image Streamer.  The code in this branch utilizes OneView templates.  
   
 ## License
 
