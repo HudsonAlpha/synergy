@@ -1,6 +1,6 @@
 # HPE Synergy Community Project
 
-This repo is managed by HudsonAlpha Institute for Biotechnology.  The purpose is to share artifact bundles and scripts used to provision Synergy resources for OpenStack and Docker projects.  
+This repo is managed by HudsonAlpha Institute for Biotechnology.  The purpose is to share artifact bundles and scripts used to provision Synergy resources for OpenStack and Docker projects.  The main branch is for OneView release 3.00.07-0288219. If you are running OneView release >= 3.10.04-0299553, please see branch 3.10.04-0299553 which includes code to utilize OneView templates for Image Streamer.
   
 ## License
 
