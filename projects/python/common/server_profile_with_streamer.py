@@ -34,49 +34,61 @@ config_module = os.path.splitext(args.CONFIG_FILE)[0]
 config = importlib.import_module(config_module)
 
 print('-------------------------------')
-print('Provisioning %s' % config.DEPL_PLAN)
-print('-------------------------------')
 print('Enclosure name: %s' % config.ENCL_NAME)
 print('Bay number: %s' % config.BAY_NUM)
-print('Deployment plan: %s' % config.DEPL_PLAN)
 print('Profile name: %s' % config.PROFILE_NAME)
+print('Template name: %s' % config.TEMPLATE_NAME)
 print('Server FQDN: %s' % config.SERVER_FQDN)
 print('Consul FQDN: %s' % config.CONSUL_FQDN)
 print('DataDog tag: %s' % config.DATADOG_TAG)
-print('Network set: %s' % config.NET_SET_NAME)
 print('VLAN ID: %s' % config.VLAN_ID)
-if (config.DEPL_PLAN == 'OpenStack all-in-one' or
-        config.DEPL_PLAN == 'OpenStack Compute'):
-    print('Server IP: %s' % config.SERVER_IP)
-    print('Server netmask: %s' % config.SERVER_MASK)
-    print('Server gateway: %s' % config.SERVER_GW)
-    print('DNS IP: %s' % config.DNS_IP)
-if config.DEPL_PLAN == 'OpenStack all-in-one':
-    print('IP allocation pool start: %s' % config.IP_ALLOC_POOL_START)
-    print('IP allocation pool end: %s' % config.IP_ALLOC_POOL_END)
-    print('Neutron ext net CIDR: %s' % config.NEUTRON_EXT_CIDR)
-    print('Neutron ext net GW: %s' % config.NEUTRON_EXT_GW)
+if config.TEMPLATE_NAME == 'OpenStack all-in-one' or config.TEMPLATE_NAME == 'OpenStack Compute':
+   print('Server IP: %s' % config.SERVER_IP)
+   print('Server netmask: %s' % config.SERVER_MASK)
+   print('Server gateway: %s' % config.SERVER_GW)
+   print('DNS IP: %s' % config.DNS_IP)
+if config.TEMPLATE_NAME == 'OpenStack all-in-one':
+   print('IP allocation pool start: %s' % config.IP_ALLOC_POOL_START)
+   print('IP allocation pool end: %s' % config.IP_ALLOC_POOL_END)
+   print('Neutron ext net CIDR: %s' % config.NEUTRON_EXT_CIDR)
+   print('Neutron ext net GW: %s' % config.NEUTRON_EXT_GW)
 print('-------------------------------')
 
 #
 # Determine URIs
 #
-ENCL_GROUP_URI = oneview_client.enclosures.get_by('name', config.ENCL_NAME)[0]['enclosureGroupUri']
 SRVR_HWARE_URI = oneview_client.enclosures.get_by('name', config.ENCL_NAME)[0]['deviceBays'][int(config.BAY_NUM)-1]['deviceUri']
-SRVR_HWARE_TYPE_URI = oneview_client.server_hardware.get(SRVR_HWARE_URI)['serverHardwareTypeUri']
-DEPL_PLAN_URI = oneview_client.os_deployment_plans.get_by_name(config.DEPL_PLAN)['uri']
-NET_URI = oneview_client.network_sets.get_by('name', config.NET_SET_NAME)[0]['uri']
-DEPL_NET_URI = oneview_client.ethernet_networks.get_by('name', config.DEPL_NET_NAME)[0]['uri']
+TEMPLATE_URI = oneview_client.server_profile_templates.get_by_name(config.TEMPLATE_NAME)['uri']
 
 #
 # Create a server profile
 #
 print('Creating server profile with Image Streamer Deployment Plan')
 
-profile_config = importlib.import_module(os.path.splitext(config.PROFILE_DEFINITION)[0])
-
 try:
-    new_profile = oneview_client.server_profiles.create(profile_config.profile_def)
+    new_profile = oneview_client.server_profile_templates.get_new_profile(TEMPLATE_URI)
+except HPOneViewException as e:
+    print(e.msg)
+#
+# Overwrite some values of the new profile, at a minimum the name and serverHardwareUri
+#
+try:
+    new_profile['serverHardwareUri'] = SRVR_HWARE_URI
+    new_profile['name'] = config.PROFILE_NAME
+    #
+    # Set custom attributes
+    #
+    if config.TEMPLATE_NAME == 'Docker CentOS 7.3':
+        new_profile['osDeploymentSettings']['osCustomAttributes'] = dict(name='SERVER_FQDN',value=config.SERVER_FQDN),dict(name='DATADOG_TAG',value=config.DATADOG_TAG),dict(name='VLAN_ID',value=config.VLAN_ID),dict(name='CONSUL_FQDN',value=config.CONSUL_FQDN)
+    if config.TEMPLATE_NAME == 'OpenStack all-in-one':
+        new_profile['osDeploymentSettings']['osCustomAttributes'] = dict(name='SERVER_FQDN',value=config.SERVER_FQDN),dict(name='DATADOG_TAG',value=config.DATADOG_TAG),dict(name='VLAN_ID',value=config.VLAN_ID),dict(name='CONSUL_FQDN',value=config.CONSUL_FQDN),dict(name='SERVER_IP',value=config.SERVER_IP),dict(name='SERVER_MASK',value=config.SERVER_MASK),dict(name='SERVER_GW',value=config.SERVER_GW),dict(name='DNS_IP',value=config.DNS_IP),dict(name='IP_ALLOC_POOL_START',value=config.IP_ALLOC_POOL_START),dict(name='IP_ALLOC_POOL_END',value=config.IP_ALLOC_POOL_END),dict(name='NEUTRON_EXT_CIDR',value=config.NEUTRON_EXT_CIDR),dict(name='NEUTRON_EXT_GW',value=config.NEUTRON_EXT_GW)
+    if config.TEMPLATE_NAME == 'OpenStack Compute':
+        new_profile['osDeploymentSettings']['osCustomAttributes'] = dict(name='SERVER_FQDN',value=config.SERVER_FQDN),dict(name='DATADOG_TAG',value=config.DATADOG_TAG),dict(name='VLAN_ID',value=config.VLAN_ID),dict(name='CONSUL_FQDN',value=config.CONSUL_FQDN),dict(name='SERVER_IP',value=config.SERVER_IP),dict(name='SERVER_MASK',value=config.SERVER_MASK),dict(name='SERVER_GW',value=config.SERVER_GW),dict(name='DNS_IP',value=config.DNS_IP)
+    oneview_client.server_profiles.update(resource=new_profile, id_or_uri=new_profile['uri'])
+except HPOneViewException as e:
+    print(e.msg)
+try:
+    created_profile = oneview_client.server_profiles.create(new_profile)
 except HPOneViewException as e:
     print(e.msg)
 
@@ -91,7 +103,7 @@ try:
         'powerState': 'On',
         'powerControl': 'MomentaryPress'
     }
-    server_power = oneview_client.server_hardware.update_power_state(configuration, new_profile['serverHardwareUri'])
+    server_power = oneview_client.server_hardware.update_power_state(configuration, created_profile['serverHardwareUri'])
     print("Successfully changed the power state to '{powerState}'".format(**server_power))
 except HPOneViewException as e:
     print(e.msg)

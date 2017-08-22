@@ -2,13 +2,14 @@
   
 The HudsonAlpha artifact bundle and scripts are used to provision 3 use cases:  
 Docker CentOS 7.3  
-OpenStack Newton all-in-one  
-OpenStack Newton compute node  
+OpenStack all-in-one  
+OpenStack compute node  
   
 ## Pre-requisites
   
 Single HPE Synergy frame with ImageStreamer module and at least one available node  
 Image Streamer Deployment Plan and Golden Image (see docs)  
+OneView template defined for the desired use case(s) (named "Docker CentOS 7.3", "OpenStack all-in-one", and "Openstack Compute")
 Orchestration server with Python >= 3.4 and Python library for HPE OneView installed (https://github.com/HewlettPackard/python-hpOneView)  
 Hashicorp Consul cluster with at least 1 server     
 DataDog Account (optional, if DataDog plan script is used)  
@@ -22,7 +23,6 @@ Install python-hpOneView per https://github.com/HewlettPackard/python-hpOneView
 Generate SSH keypair that will be used to communicate with Synergy nodes once they are provisioned  
 Create /hpov/haconfig.json with Synergy OneView credentials
 Clone this repo  
-Modify <project>/profile_.py files for your environment  
 Modify <project>/config_.py files for your environment  
   
 ## Install and configure Hashicorp Consul single server  
@@ -68,7 +68,7 @@ $ packstack --answer-file=<answerfile>
 ## Built With
 * CentOS 7.3.1611  
 * Python 3.4.5  
-* python-hpOneView  
+* python-hpOneView 4.0.0
   
 ## Contact  
 Email: cloud-composers@hudsonalpha.org  
