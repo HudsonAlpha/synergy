@@ -1,7 +1,7 @@
 # Synergy Provisioning via Image Streamer and Python  
   
 The HudsonAlpha artifact bundle and scripts are used to provision 3 use cases:  
-Docker CentOS 7.3  
+Docker CentOS 7.4  
 OpenStack Newton all-in-one  
 OpenStack Newton compute node  
   
@@ -15,7 +15,7 @@ DataDog Account (optional, if DataDog plan script is used)
   
 ## Configure orchestration node  
   
-Server running CentOS 7.3 OS  
+Server running CentOS 7.4 OS  
 Must have network connectivity to HPE Synergy Composer IP  
 Install python >= 3.4  
 Install python-hpOneView per https://github.com/HewlettPackard/python-hpOneView  
@@ -40,7 +40,7 @@ consul kv put synergy/datadog '<DataDog API key>'
 
 ## Provision nodes  
 
-Provision Docker CentOS 7.3 node  
+Provision Docker CentOS 7.4 node  
 ```
 cd projects/python/common
 export PYTHONPATH=../docker
@@ -66,7 +66,7 @@ $ packstack --answer-file=<answerfile>
 ```
   
 ## Built With
-* CentOS 7.3.1611  
+* CentOS 7.4
 * Python 3.4.5  
 * python-hpOneView  
   

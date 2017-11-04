@@ -1,6 +1,6 @@
 ENCL_NAME = ""
 BAY_NUM = ""
-DEPL_PLAN = "Docker CentOS 7.3"
+DEPL_PLAN = "Docker CentOS 7.4"
 PROFILE_NAME = ""
 PROFILE_DEFINITION = "profile_docker.py"
 SERVER_FQDN = ""
