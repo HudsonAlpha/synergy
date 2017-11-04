@@ -1,8 +1,8 @@
 # Synergy Provisioning via Image Streamer and Python  
   
 The HudsonAlpha artifact bundle and scripts are used to provision 4 use cases:  
-Docker CentOS 7.4 
-Docker Fedora 27   
+Docker CentOS 7.4  
+Docker Fedora 27  
 OpenStack all-in-one  
 OpenStack compute node  
   
