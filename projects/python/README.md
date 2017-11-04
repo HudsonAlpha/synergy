@@ -1,7 +1,8 @@
 # Synergy Provisioning via Image Streamer and Python  
   
-The HudsonAlpha artifact bundle and scripts are used to provision 3 use cases:  
-Docker CentOS 7.3  
+The HudsonAlpha artifact bundle and scripts are used to provision 4 use cases:  
+Docker CentOS 7.4 
+Docker Fedora 27   
 OpenStack all-in-one  
 OpenStack compute node  
   
@@ -9,14 +10,14 @@ OpenStack compute node
   
 Single HPE Synergy frame with ImageStreamer module and at least one available node  
 Image Streamer Deployment Plan and Golden Image (see docs)  
-OneView template defined for the desired use case(s) (named "Docker CentOS 7.3", "OpenStack all-in-one", and "Openstack Compute")
+OneView template defined for the desired use case(s) (named "Docker CentOS 7.4", "Docker Fedora 27", "OpenStack all-in-one", and "Openstack Compute")
 Orchestration server with Python >= 3.4 and Python library for HPE OneView installed (https://github.com/HewlettPackard/python-hpOneView)  
 Hashicorp Consul cluster with at least 1 server     
 DataDog Account (optional, if DataDog plan script is used)  
   
 ## Configure orchestration node  
   
-Server running CentOS 7.3 OS  
+Server running CentOS 7.4 OS  
 Must have network connectivity to HPE Synergy Composer IP  
 Install python >= 3.4  
 Install python-hpOneView per https://github.com/HewlettPackard/python-hpOneView  
@@ -40,11 +41,12 @@ consul kv put synergy/datadog '<DataDog API key>'
 
 ## Provision nodes  
 
-Provision Docker CentOS 7.3 node  
+Provision Docker CentOS 7.4 or Docker Fedora 27 node  
 ```
 cd projects/python/common
 export PYTHONPATH=../docker
-./server_profile_with_streamer.py config_docker.py
+./server_profile_with_streamer.py config_docker_centos.py
+./server_profile_with_streamer.py config_docker_fedora.py
 ```
 
 Provision OpenStack all-in-one node
@@ -66,7 +68,7 @@ $ packstack --answer-file=<answerfile>
 ```
   
 ## Built With
-* CentOS 7.3.1611  
+* CentOS 7.4, Fedora 27
 * Python 3.4.5  
 * python-hpOneView 4.0.0
   

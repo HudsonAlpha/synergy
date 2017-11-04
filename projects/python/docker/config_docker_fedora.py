@@ -1,0 +1,8 @@
+ENCL_NAME = ""
+BAY_NUM = ""
+PROFILE_NAME = ""
+TEMPLATE_NAME = "Docker Fedora 27"
+SERVER_FQDN = ""
+CONSUL_FQDN = ""
+DATADOG_TAG = ""
+VLAN_ID = ""

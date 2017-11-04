@@ -1,7 +1,7 @@
 ENCL_NAME = ""
 BAY_NUM = ""
 PROFILE_NAME = ""
-TEMPLATE_NAME = "Docker CentOS 7.3"
+TEMPLATE_NAME = "Docker CentOS 7.4"
 SERVER_FQDN = ""
 CONSUL_FQDN = ""
 DATADOG_TAG = ""
