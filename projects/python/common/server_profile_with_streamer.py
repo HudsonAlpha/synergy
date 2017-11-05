@@ -78,7 +78,7 @@ try:
     #
     # Set custom attributes
     #
-    if config.TEMPLATE_NAME == 'Docker CentOS 7.3':
+    if config.TEMPLATE_NAME == 'Docker CentOS 7.4' or config.TEMPLATE_NAME == 'Docker Fedora 27':
         new_profile['osDeploymentSettings']['osCustomAttributes'] = dict(name='SERVER_FQDN',value=config.SERVER_FQDN),dict(name='DATADOG_TAG',value=config.DATADOG_TAG),dict(name='VLAN_ID',value=config.VLAN_ID),dict(name='CONSUL_FQDN',value=config.CONSUL_FQDN)
     if config.TEMPLATE_NAME == 'OpenStack all-in-one':
         new_profile['osDeploymentSettings']['osCustomAttributes'] = dict(name='SERVER_FQDN',value=config.SERVER_FQDN),dict(name='DATADOG_TAG',value=config.DATADOG_TAG),dict(name='VLAN_ID',value=config.VLAN_ID),dict(name='CONSUL_FQDN',value=config.CONSUL_FQDN),dict(name='SERVER_IP',value=config.SERVER_IP),dict(name='SERVER_MASK',value=config.SERVER_MASK),dict(name='SERVER_GW',value=config.SERVER_GW),dict(name='DNS_IP',value=config.DNS_IP),dict(name='IP_ALLOC_POOL_START',value=config.IP_ALLOC_POOL_START),dict(name='IP_ALLOC_POOL_END',value=config.IP_ALLOC_POOL_END),dict(name='NEUTRON_EXT_CIDR',value=config.NEUTRON_EXT_CIDR),dict(name='NEUTRON_EXT_GW',value=config.NEUTRON_EXT_GW)
