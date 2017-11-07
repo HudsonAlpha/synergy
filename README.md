@@ -1,18 +1,17 @@
 # HPE Synergy Community Project  
   
 This repo is maintained by HudsonAlpha Institute for Biotechnology.  The purpose is to share Synergy Image Streamer Artifact Bundles and python scripts
- that can be used to provision infrastructure for OpenStack, Docker, and Kubernetes projects.  These scripts require Synergy OneView version >= 3.10.
-Please join us on Slack at http://hudsonalpha.org/cloud-composers.  
+ that can be used to provision infrastructure for OpenStack, Docker, and Kubernetes projects.  These scripts require Synergy OneView version >= 3.10.  
   
 # Use cases   
   
 The HudsonAlpha Artifact Bundle and Python scripts are used to provision 6 use cases:  
-Docker bare metal CentOS 7.4  
-Docker bare metal Fedora 27  
-OpenStack all-in-one  
-OpenStack compute node  
-Kubernetes master node  
-Kubernetes minion node  
+* Docker bare metal CentOS 7.4  
+* Docker bare metal Fedora 27  
+* OpenStack all-in-one  
+* OpenStack compute node  
+* Kubernetes master node  
+* Kubernetes minion node  
   
 ## Pre-requisites
   
