@@ -106,8 +106,8 @@ $ packstack --answer-file=<answerfile>
 Email: cloud-composers@hudsonalpha.org  
 Twitter: @katmullican
   
-## Join the cloud-composers Slack community!  
-http://www.hudsonalpha.org/cloud-composers  
+## Join the HPE Developer Slack community!  
+https://www.labs.hpe.com/slack
 
 ## Authors
 * **Katreena Mullican** - *Initial work* - [HudsonAlpha Instite for Biotechnology](http://www.hudsonalpha.org)
