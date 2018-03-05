@@ -4,7 +4,6 @@
 # Katreena Mullican
 # HudsonAlpha Institute for Biotechnology
 # This code is under the MIT license, view the complete file at https://github.com/HudsonAlpha/synergy/blob/master/LICENSE
-
 # -------------------------------------------------
 # This script connects to a OneView appliance, performs a backup,
 # and downloads the backup to /tmp.  The backup can then uploaded to
