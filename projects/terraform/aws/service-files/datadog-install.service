@@ -1,0 +1,12 @@
+[Unit]
+Description=Install DataDog agent
+After=multi-user.target consul-install.service
+Requires=consul-install.service
+ConditionPathIsDirectory=!/etc/dd-agent
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/datadog-install.sh
+
+[Install]
+WantedBy=runlast.target

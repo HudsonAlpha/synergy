@@ -1,0 +1,10 @@
+[Unit]
+Description=Install Consul agent
+After=multi-user.target docker-install.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/consul-agent-install.sh
+
+[Install]
+WantedBy=runlast.target

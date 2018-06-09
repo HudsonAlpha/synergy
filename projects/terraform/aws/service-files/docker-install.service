@@ -1,0 +1,11 @@
+[Unit]
+Description=Install Docker-CE and configure devicemapper LVM storage
+After=multi-user.target
+ConditionPathExists=!/usr/bin/docker
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/docker-install.sh
+
+[Install]
+WantedBy=runlast.target

@@ -1,0 +1,10 @@
+[Unit]
+Description=Install Kubernetes minion node
+After=multi-user.target consul-install.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/k8s-worker-install.sh
+
+[Install]
+WantedBy=runlast.target
