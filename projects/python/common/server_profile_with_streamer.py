@@ -52,7 +52,7 @@ if config.TEMPLATE_NAME == 'OpenStack all-in-one':
    print('IP allocation pool end: %s' % config.IP_ALLOC_POOL_END)
    print('Neutron ext net CIDR: %s' % config.NEUTRON_EXT_CIDR)
    print('Neutron ext net GW: %s' % config.NEUTRON_EXT_GW)
-if config.TEMPLATE_NAME == 'K8s_master CentOS 7.4' or config.TEMPLATE_NAME == 'K8s_minion CentOS 7.4':
+if config.TEMPLATE_NAME == 'k8s-master-CentOS7.4' or config.TEMPLATE_NAME == 'k8s-worker-CentOS7.4':
    print('K8s cluster name: %s' % config.K8S_CLUSTER_NAME)
 print('-------------------------------')
 
@@ -82,7 +82,7 @@ try:
     #
     if config.TEMPLATE_NAME == 'Docker CentOS 7.4' or config.TEMPLATE_NAME == 'Docker Fedora 27':
         new_profile['osDeploymentSettings']['osCustomAttributes'] = dict(name='SERVER_FQDN',value=config.SERVER_FQDN),dict(name='DATADOG_TAG',value=config.DATADOG_TAG),dict(name='VLAN_ID',value=config.VLAN_ID),dict(name='CONSUL_FQDN',value=config.CONSUL_FQDN)
-    if config.TEMPLATE_NAME == 'K8s_master CentOS 7.4' or config.TEMPLATE_NAME == 'K8s_minion CentOS 7.4':
+    if config.TEMPLATE_NAME == 'k8s-master-CentOS7.4' or config.TEMPLATE_NAME == 'k8s-worker-CentOS7.4':
         new_profile['osDeploymentSettings']['osCustomAttributes'] = dict(name='SERVER_FQDN',value=config.SERVER_FQDN),dict(name='DATADOG_TAG',value=config.DATADOG_TAG),dict(name='VLAN_ID',value=config.VLAN_ID),dict(name='CONSUL_FQDN',value=config.CONSUL_FQDN),dict(name='K8S_CLUSTER_NAME',value=config.K8S_CLUSTER_NAME)
     if config.TEMPLATE_NAME == 'OpenStack all-in-one':
         new_profile['osDeploymentSettings']['osCustomAttributes'] = dict(name='SERVER_FQDN',value=config.SERVER_FQDN),dict(name='DATADOG_TAG',value=config.DATADOG_TAG),dict(name='VLAN_ID',value=config.VLAN_ID),dict(name='CONSUL_FQDN',value=config.CONSUL_FQDN),dict(name='SERVER_IP',value=config.SERVER_IP),dict(name='SERVER_MASK',value=config.SERVER_MASK),dict(name='SERVER_GW',value=config.SERVER_GW),dict(name='DNS_IP',value=config.DNS_IP),dict(name='IP_ALLOC_POOL_START',value=config.IP_ALLOC_POOL_START),dict(name='IP_ALLOC_POOL_END',value=config.IP_ALLOC_POOL_END),dict(name='NEUTRON_EXT_CIDR',value=config.NEUTRON_EXT_CIDR),dict(name='NEUTRON_EXT_GW',value=config.NEUTRON_EXT_GW)

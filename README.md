@@ -11,7 +11,7 @@ The HudsonAlpha Artifact Bundle and Python scripts are used to provision 6 use c
 * OpenStack Queens all-in-one  
 * OpenStack Queens compute node  
 * Kubernetes master node  
-* Kubernetes minion node  
+* Kubernetes worker node  
   
 ## Pre-requisites
   
@@ -71,12 +71,12 @@ export PYTHONPATH=../docker
 ./server_profile_with_streamer.py config_docker_fedora.py
 ```
 
-Provision Kubernetes master or minion node  
+Provision Kubernetes master or worker node  
 ```
 cd projects/python/common
 export PYTHONPATH=../k8s
-./server_profile_with_streamer.py config_K8s_master.py
-./server_profile_with_streamer.py config_K8s_minion.py
+./server_profile_with_streamer.py config_k8s_master.py
+./server_profile_with_streamer.py config_k8s_worker.py
 ```
 
 Provision OpenStack all-in-one node
