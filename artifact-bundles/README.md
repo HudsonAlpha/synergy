@@ -5,7 +5,7 @@ The CentOS 7.4 Artifact Bundle includes OS Build Plan and Plan Scripts for these
 * OpenStack Queens all-in-one  
 * OpenStack Queens compute node
 * Kubernetes master node  
-* Kubernetes minion node  
+* Kubernetes worker node  
 
 The Fedora 27 Artifact Bundle includes OS Build Plan and Plan Scripts for these use cases:
 * Docker-CE bare metal
