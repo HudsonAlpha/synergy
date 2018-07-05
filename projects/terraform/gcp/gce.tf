@@ -17,13 +17,13 @@ resource "google_compute_instance" "k8s-gcp-worker" {
   }
 
  metadata {
-    sshKeys = "ha-demo:${file("~/.ssh/gcp/id_rsa.pub")}"
+    sshKeys = "${var.ssh_user}:${file(var.ssh_pubkey)}"
   }
 
   connection {
       type = "ssh"
-      user = "ha-demo"
-      private_key = "${file("~/.ssh/gcp/id_rsa")}"
+      user = "${var.ssh_user}"
+      private_key = "${file(var.ssh_privkey)}"
   }
 
   provisioner "file" {
