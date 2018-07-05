@@ -1,18 +1,18 @@
 # Terraform use cases  
   
-Terraform is used to provision one or more Kubernetes cluster worker nodes in AWS or OneView and automatically join them to an existing K8s cluster.  It is assumed that you have already followed the main README file to provision a K8s master node and cluster and a functional Consul server in your environment.  
+Terraform is used to provision one or more Kubernetes cluster worker nodes in AWS or GCP and automatically join them to an existing K8s cluster.  It is assumed that you have already followed the main README file to provision a K8s master node and cluster and a functional Consul server in your environment.  
   
 ## Pre-requisites
   
 * HashiCorp terraform (https://www.terraform.io/downloads.html)  
-* Files from this repo extracted into terraform/aws or terraform/oneview    
+* Files from this repo extracted into terraform/aws or terraform/gcp
 * Hashicorp Consul cluster with at least 1 server (see below for config)  
 * DataDog Account (optional, if DataDog Plan Script is used)  
   
 ## Configure orchestration server  
   
 1. Install OS (recommend CentOS 7.4)   
-2. Ensure network connectivity to AWS   
+2. Ensure network connectivity to AWS or GCP   
 3. Install docker (yum install -y docker)  
 4. Clone this repo (git clone https://github.com/HudsonAlpha/synergy.git)  
 5. Modify projects/terraform/aws/terraform.tfvars for your environment   
@@ -20,9 +20,11 @@ Terraform is used to provision one or more Kubernetes cluster worker nodes in AW
   
 ## Provision nodes  
 
-Provision K8s worker nodes in AWS  
+Provision K8s worker nodes in AWS or GCP  
 ```
-cd projects/terraform/aws
+cd projects/terraform/<cloud provider>
+vi terraform.tfvars
+vi scripts/consul-agent-install.sh (fill in the CONSUL_SERVER_IP)
 terraform init
 terraform plan
 terraform apply
